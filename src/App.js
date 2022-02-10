@@ -26,7 +26,8 @@ export default class App extends React.Component
 		super(props);
 		this.state = 
 		{
-			menu: EMenu.HEX_DEC
+			menu: EMenu.HEX_DEC,
+			inputNumberStr: "",
 		}
 	}
 
@@ -36,7 +37,7 @@ export default class App extends React.Component
 	}
 	setInputNumberStr(value)
 	{
-
+		this.setState({inputNumberStr: value});
 	}
 
     render() {
@@ -47,11 +48,9 @@ export default class App extends React.Component
 
 				<div className="main-area">
 					<div className="button-area">
-						<SquareButtonField/>
+						<SquareButtonField  inputNumberStr={this.state.inputNumberStr} onClick={(value) => this.setInputNumberStr(value)}/>
 					</div>
-					
-					<input className="number-input"></input>
-					<div className="number-output">431463</div>
+					<HexToDeciminal inputNumberStr={this.state.inputNumberStr}/>
 				</div>
 				
 			</div>
@@ -67,9 +66,12 @@ class HexToDeciminal extends React.Component
 {
 	render()
 	{
+		let num = this.props.inputNumberStr!=="" ? parseInt(this.props.inputNumberStr, 16) : 0;
+		
 		return (
 			<div>
-				<input></input>
+				<input className="number-input" value={this.props.inputNumberStr.toLowerCase()}></input>
+				<div className="number-output">{num}</div>
 			</div>
 		);
 	}

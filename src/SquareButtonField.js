@@ -32,7 +32,14 @@ export default class SquareButtonField extends React.Component
 		{
 			let num = row * 4 + i;
 			let str = num.toString(16).toUpperCase();
-			ret.push(<button className="square-button" onClick={() => console.log(str)}>{str}</button>);
+			ret.push(
+				<button 
+					className="square-button" 
+					onClick={() => 
+						this.props.onClick(this.props.inputNumberStr + str)
+					}>
+					{str}
+				</button>);
 		}
 		return(ret);
 	}
