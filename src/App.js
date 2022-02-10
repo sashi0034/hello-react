@@ -41,9 +41,14 @@ export default class App extends React.Component
 			<div className="base-document">
 				<SideBar menu={this.state.menu} setMenu={(value) => this.setMenu(value)}/>
 
-				<div className="button-area">
-					<SquareButtonField/>
+				<div className="main-area">
+					<div className="button-area">
+						<SquareButtonField/>
+					</div>
+					
+					<input></input>
 				</div>
+				
 			</div>
 			
 		);
@@ -52,12 +57,18 @@ export default class App extends React.Component
 
 
 
-
-
-
-
-
-
+// 16進数から10進数へ
+class HexToDeciminal extends React.Component
+{
+	render()
+	{
+		return (
+			<div>
+				<input></input>
+			</div>
+		);
+	}
+}
 
 
 

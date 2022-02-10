@@ -37,12 +37,7 @@ export default class SquareButtonField extends React.Component
 		return(ret);
 	}
 
-	renderSquare()
-	{
-		return(
-			<button className="square-button">T</button>
-		);
-	}
+
 
 }
 
