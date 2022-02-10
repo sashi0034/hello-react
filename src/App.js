@@ -50,7 +50,7 @@ export default class App extends React.Component
 					<div className="button-area">
 						<SquareButtonField  inputNumberStr={this.state.inputNumberStr} onClick={(value) => this.setInputNumberStr(value)}/>
 					</div>
-					<HexToDeciminal inputNumberStr={this.state.inputNumberStr}/>
+					<HexToDeciminal inputNumberStr={this.state.inputNumberStr} onChange={(value) => this.setInputNumberStr(value)}/>
 				</div>
 				
 			</div>
@@ -64,13 +64,23 @@ export default class App extends React.Component
 // 16進数から10進数へ
 class HexToDeciminal extends React.Component
 {
+	constructor(props)
+	{
+		super(props);
+	}
+
+
 	render()
 	{
 		let num = this.props.inputNumberStr!=="" ? parseInt(this.props.inputNumberStr, 16) : 0;
 		
 		return (
 			<div>
-				<input className="number-input" value={this.props.inputNumberStr.toLowerCase()}></input>
+				<input 
+					className="number-input"
+					value={this.props.inputNumberStr.toLowerCase()}
+					onChange={(value) => console.log(value.target)}>
+				</input>
 				<div className="number-output">{num}</div>
 			</div>
 		);
