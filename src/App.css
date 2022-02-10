@@ -5,18 +5,38 @@ body{
 
 
 
-.button-area{
-  margin: 5% 0;
-  padding: 2%;
-  background-color: #777;
-  text-align: center;
+.base-document{
+  display: flex;
 }
 
 
 
 
+
+.sideBar{
+  width: 20%;
+  color: #ddd;
+  text-align: left;
+  position: sticky;
+  background-color: #1a1a1a;
+}
+
+
+
+
+
+
+
+
+
+.button-area{
+  width: 80%;
+  padding: 2%;
+  background-color: #777;
+  text-align: center;
+}
+
 .square-button{
-  clear: none;
   font-size: 20px;
   font-weight: bold;
   width: 40px;

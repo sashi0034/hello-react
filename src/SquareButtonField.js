@@ -2,9 +2,9 @@ import React from "react";
 
 export default class SquareButtonField extends React.Component 
 {
-	constructor()
+	constructor(props)
 	{
-		super();
+		super(props);
 	}
 
 	render()
