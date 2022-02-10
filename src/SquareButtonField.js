@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class SquareButton extends React.Component 
+export default class SquareButtonField extends React.Component 
 {
 	constructor()
 	{
