@@ -1,6 +1,16 @@
 import React from "react";
 
-export default class SquareButtonField extends React.Component 
+interface ISquareButtonFieldProps
+{
+	inputNumberStr: string;
+	onClick: (str: string) => void;
+}
+interface ISquareButtonFieldState
+{
+	
+}
+
+export default class SquareButtonField extends React.Component<ISquareButtonFieldProps, ISquareButtonFieldState>
 {
 	constructor(props)
 	{

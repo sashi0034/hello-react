@@ -3,6 +3,7 @@ import SquareButtonField from "./SquareButtonField"
 import {SideBar, EMenu, menuProps} from "./SideBar";
 
 import './App.css';
+import { Interface } from "readline";
 
 
 
@@ -18,8 +19,18 @@ menuProps[EMenu.MEMO] = getMenuProp("Hex memo");
 menuProps[EMenu.COMP] = getMenuProp("Hex complement");
 
 
+interface IAppProps
+{
+}
+interface IAppState
+{
+	menu: EMenu,
+	inputNumberStr: "",
+}
 
-export default class App extends React.Component 
+
+
+export class App extends React.Component<IAppProps, IAppState>
 {
 	constructor(props)
 	{
@@ -61,10 +72,23 @@ export default class App extends React.Component
 
 
 
-// 16進数から10進数へ
-class HexToDeciminal extends React.Component
+interface IHexToDeciminalState
 {
-	constructor(props)
+	inputNumberStr: string;
+}
+
+interface IHexToDeciminalPoprs
+{
+	inputNumberStr: string;
+	onChange: (value: number) => void;
+}
+
+
+
+// 16進数から10進数へ
+class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDeciminalState>
+{
+	constructor(props: IHexToDeciminalPoprs)
 	{
 		super(props);
 	}

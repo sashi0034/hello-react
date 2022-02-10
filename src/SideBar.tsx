@@ -5,16 +5,23 @@ export const EMenu = {
 	HEX_DEC: 0,
 	MEMO: 1,
     COMP: 2,
-}
-
+} as const;
+export type EMenu = typeof EMenu[keyof typeof EMenu];
 
 
 export var menuProps = {};
 
 
+interface ISlideBarProps
+{
+    menu: EMenu;
+    setMenu: (index: number) => void;
+}
 
 
-export class SideBar extends React.Component
+
+
+export class SideBar extends React.Component<ISlideBarProps, {}>
 {
     render()
     {
