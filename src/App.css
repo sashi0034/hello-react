@@ -1,14 +1,29 @@
 
-body{
-  margin: 2%;
+
+.button-area{
+  margin: 5% 0;
+  padding: 2%;
+  background-color: #777;
+  text-align: center;
 }
 
-.square{
-  block-size: 20%;
+
+
+
+.square-button{
+  clear: none;
+  font-size: 20px;
+  font-weight: bold;
+  width: 40px;
+  line-height: 36px;
   background-color: #fff;
+  border-radius: 10%;
 }
 
+.square-button:hover{
+  font-size: 30px;
+}
 
-
-
-
+.square-button:active{
+  background-color: #eee;
+}
