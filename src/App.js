@@ -34,6 +34,10 @@ export default class App extends React.Component
 	{
 		this.setState({menu: value});
 	}
+	setInputNumberStr(value)
+	{
+
+	}
 
     render() {
 		
@@ -46,7 +50,8 @@ export default class App extends React.Component
 						<SquareButtonField/>
 					</div>
 					
-					<input></input>
+					<input className="number-input"></input>
+					<div className="number-output">431463</div>
 				</div>
 				
 			</div>

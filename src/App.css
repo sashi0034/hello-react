@@ -99,3 +99,25 @@ body{
 .square-button:active{
   background-color: #ddd;
 }
+
+
+.number-input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  background-color: #202029;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.number-output{
+  color: rgb(213, 255, 28);
+  background-color: #444444;
+  text-shadow: 1px 0 0 #111, 0 1px 0 #111, -1px 0 0 #111, 0 -1px 0 #111,
+	  1px 1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111, -1px -1px 0 #111;  
+}
+
+
+
+
