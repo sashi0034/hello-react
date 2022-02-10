@@ -11,9 +11,9 @@ export default class App extends React.Component
         return (
 			<div className="base-document">
 				<div className="sideBar">
-					おはよう<br/>
-					こんにちは<br/>
-					ばいばい<br/>
+					<div className="menu-top">16進数謎電卓</div>
+					<SideMenu/>
+					<SideMenu/>
 					
 				</div>
 
@@ -30,8 +30,11 @@ class SideMenu extends React.Component
 {
 	render()
 	{
+		let classLink="menu-link";
 		return (
-			<a href="#hex2dec" ># Hex to Decminal</a>
+			<div className="menu-tag">
+				<a href="#hex2dec" className={classLink}># Hex to Decminal</a><br/>
+			</div>
 		);
 	}
 }
