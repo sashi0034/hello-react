@@ -38,16 +38,23 @@ body{
 .menu-link{
   margin: 0;
   padding: 0;
+  line-height: 25px;
   padding-left: 2px;
-  font-size: 8px;
-  color: #888;
+  font-size: 10px;
   text-decoration: none;
+}
+
+.menu-tag{
+  color: #888;
 }
 
 .menu-tag:hover{
   background-color: #4a4a4a;
 }
-
+.menu-tag-active{
+  background-color: #555555;
+  color: #ffffff;
+}
 
 
 

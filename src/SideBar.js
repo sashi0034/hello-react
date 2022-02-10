@@ -20,31 +20,27 @@ export class SideBar extends React.Component
     {
         return (<div className="side-bar">
 					<div className="menu-top">16進数謎電卓</div>
-					<SideMenu index={EMenu.HEX_DEC} onClick={() => this.props.setMenu(EMenu.HEX_DEC)}/>
-                    <SideMenu index={EMenu.MEMO} onClick={() => this.props.setMenu(EMenu.MEMO)}/>
-                    <SideMenu index={EMenu.COMP} onClick={() => this.props.setMenu(EMenu.COMP)}/>
+                    {this.renderSideMenu(EMenu.HEX_DEC)}
+                    {this.renderSideMenu(EMenu.MEMO)}
+                    {this.renderSideMenu(EMenu.COMP)}
 				</div>)
+    }
+
+    renderSideMenu(index)
+    {
+        let classLink="menu-link";
+        let className = index==this.props.menu ? "menu-tag-active" : "menu-tag";
+
+        return (
+            <div className={className} onClick={() => this.props.setMenu(index)}>
+                <div className={classLink}>
+                    #&nbsp;&nbsp;{menuProps[index].text}
+                </div>
+            </div>
+        );
+    
     }
 
 }
 
-class SideMenu extends React.Component
-{
-
-    
-	render()
-	{
-		let classLink="menu-link";
-		return (
-			<div className="menu-tag">
-				<a 
-                    href="#hex-to-deciminal"
-                    className={classLink}
-                    onClick={this.props.onClick}>
-                    # {menuProps[this.props.index].text}
-                </a><br/>
-			</div>
-		);
-	}
-}
 
