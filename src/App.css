@@ -152,9 +152,13 @@ body{
   border-radius: 20%;
   color: #eee;
   text-shadow: 1px 0 0 #333, 0 1px 0 #333, -1px 0 0 #333, 0 -1px 0 #333,
-  1px 1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, -1px -1px 0 #333; 
+  1px 1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, -1px -1px 0 #333;
+  user-select: none;
 }
 
+.hide{
+  visibility: hidden;
+}
 
 
 

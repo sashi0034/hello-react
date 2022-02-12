@@ -113,13 +113,17 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 		this.setState({
 			history: temp,
 		});
+
+		this.props.onChange("");
 	}
-	pushDeleteButton(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)
+	pushDeleteButton(index)
 	{
-		console.log(e);
+		let temp = this.state.history;
+		Useful.remove(temp, this.state.history[index]);
+		this.setState({history: temp});
 	}
 
-	getDeciminalFromStr(str: string)
+	getDeciminalFromStr(str: string): number
 	{
 		return str!=="" ? parseInt(str, 16) : 0;
 	}
@@ -137,7 +141,7 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 					</div>
 					<button 
 						className="delete-button"
-						onClick={e=>this.pushDeleteButton(e)}
+						onClick={()=>this.pushDeleteButton(i)}
 					>-</button>
 				</div>
 			);
@@ -169,7 +173,7 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 						{this.getDeciminalFromStr(this.props.inputNumberStr)}
 					</div>
 					<button 
-						className="delete-button"
+						className="delete-button hide"
 						onClick={e=>this.pushDeleteButton(e)}
 					>-</button>
 				</div>
