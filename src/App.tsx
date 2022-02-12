@@ -1,6 +1,7 @@
 import React from "react";
 import SquareButtonField from "./SquareButtonField"
 import {SideBar, EMenu, menuProps} from "./SideBar";
+import {Hex} from "./hex"
 
 import './App.css';
 import { Interface } from "readline";
@@ -74,13 +75,12 @@ export class App extends React.Component<IAppProps, IAppState>
 
 interface IHexToDeciminalState
 {
-	inputNumberStr: string;
 }
 
 interface IHexToDeciminalPoprs
 {
 	inputNumberStr: string;
-	onChange: (value: number) => void;
+	onChange: (value: string) => void;
 }
 
 
@@ -91,20 +91,29 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 	constructor(props: IHexToDeciminalPoprs)
 	{
 		super(props);
+		this.state = {};
 	}
 
 
 	render()
 	{
 		let num = this.props.inputNumberStr!=="" ? parseInt(this.props.inputNumberStr, 16) : 0;
+
 		
 		return (
 			<div>
 				<input 
 					className="number-input"
-					value={this.props.inputNumberStr.toLowerCase()}
-					onChange={(value) => console.log(value.target)}>
+					value={Hex.separateSpace(this.props.inputNumberStr)}
+					onChange={(e) => {
+						let value = e.target.value.toUpperCase().replace(/[^0-9A-F]/g, "");
+						this.props.onChange(value);
+						}}>
 				</input>
+				<button
+					className="add-button"
+				>+</button>
+
 				<div className="number-output">{num}</div>
 			</div>
 		);

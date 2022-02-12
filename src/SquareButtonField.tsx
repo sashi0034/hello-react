@@ -24,20 +24,21 @@ export default class SquareButtonField extends React.Component<ISquareButtonFiel
 
 	renderSquareMatrix()
 	{
-		let ret = [];
+		let ret: Array<JSX.Element> = [];
 		for (let i=0; i<4; i++)
 		{
 			ret.push(
 			<div>
 				{this.renderSquareLine(i)}
-			</div>);
+			</div>
+			);
 		}
 		return(ret);
 	}
 
 	renderSquareLine(row)
 	{
-		let ret = [];
+		let ret: Array<JSX.Element> = [];
 		for (let i=0; i<4; i++)
 		{
 			let num = row * 4 + i;
@@ -47,7 +48,7 @@ export default class SquareButtonField extends React.Component<ISquareButtonFiel
 					className="square-button" 
 					onClick={() => 
 						this.props.onClick(this.props.inputNumberStr + str)
-					}>
+				}>
 					{str}
 				</button>);
 		}

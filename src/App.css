@@ -111,6 +111,16 @@ body{
   border-width: 1px;
 }
 
+.add-button{
+  margin-left: 20px;
+  background-color: #ddf;
+  border-radius: 50%;
+  color: #eee;
+  text-shadow: 1px 0 0 #333, 0 1px 0 #333, -1px 0 0 #333, 0 -1px 0 #333,
+  1px 1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, -1px -1px 0 #333; 
+}
+
+
 .number-output{
   color: rgb(213, 255, 28);
   background-color: #444444;
