@@ -134,13 +134,13 @@ body{
   margin-left: 4px;
   margin-right: 4px;
   text-align: center;
-  width: 30%;
+  width: 50%;
   background-color: #333;
   border-radius: 5px;
 }
 
 .output-out{
-  width: 70%;
+  width: 50%;
   text-align: center;
   background-color: #505050;
   border-radius: 5px;

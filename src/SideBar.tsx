@@ -2,8 +2,8 @@ import React from "react";
 
 
 export const EMenu = {
-	HEX_DEC: 0,
-	MEMO: 1,
+	TO_DEC: 0,
+	TO_BIN: 1,
     COMP: 2,
 } as const;
 export type EMenu = typeof EMenu[keyof typeof EMenu];
@@ -27,8 +27,8 @@ export class SideBar extends React.Component<ISlideBarProps, {}>
     {
         return (<div className="side-bar">
 					<div className="menu-top">16進数謎電卓</div>
-                    {this.renderSideMenu(EMenu.HEX_DEC)}
-                    {this.renderSideMenu(EMenu.MEMO)}
+                    {this.renderSideMenu(EMenu.TO_DEC)}
+                    {this.renderSideMenu(EMenu.TO_BIN)}
                     {this.renderSideMenu(EMenu.COMP)}
 				</div>)
     }
