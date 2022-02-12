@@ -1,7 +1,7 @@
 import React from "react";
 import SquareButtonField from "./SquareButtonField"
 import {SideBar, EMenu, menuProps} from "./SideBar";
-import {Hex} from "./hex"
+import {Useful} from "./useful"
 
 import './App.css';
 import { Interface } from "readline";
@@ -72,9 +72,18 @@ export class App extends React.Component<IAppProps, IAppState>
 }
 
 
+class History
+{
+	constructor(
+		public input: string, 
+		public output: string
+	){};
+}
+
 
 interface IHexToDeciminalState
 {
+	history: History[]; 
 }
 
 interface IHexToDeciminalPoprs
@@ -91,20 +100,58 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 	constructor(props: IHexToDeciminalPoprs)
 	{
 		super(props);
-		this.state = {};
+		this.state = 
+		{
+			history: [],
+		};
 	}
 
+	pushAddButton()
+	{
+		let temp: History[] = this.state.history;
+		temp.unshift(new History(Useful.separateHexSpace(this.props.inputNumberStr), `${this.getDeciminalFromStr(this.props.inputNumberStr)}`));
+		this.setState({
+			history: temp,
+		});
+	}
+	pushDeleteButton(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)
+	{
+		console.log(e);
+	}
+
+	getDeciminalFromStr(str: string)
+	{
+		return str!=="" ? parseInt(str, 16) : 0;
+	}
+
+	renderHistory()
+	{
+		let ret: JSX.Element[] = [];
+		for (let i=0; i<this.state.history.length; i++)
+		{
+			ret.push(
+				<div className="number-output">
+					<div className="output-in">{this.state.history[i].input}</div>
+					<div className="output-out">
+						{this.state.history[i].output}
+					</div>
+					<button 
+						className="delete-button"
+						onClick={e=>this.pushDeleteButton(e)}
+					>-</button>
+				</div>
+			);
+		}
+		return ret;
+	}
 
 	render()
 	{
-		let num = this.props.inputNumberStr!=="" ? parseInt(this.props.inputNumberStr, 16) : 0;
-
-		
 		return (
 			<div>
 				<input 
 					className="number-input"
-					value={Hex.separateSpace(this.props.inputNumberStr)}
+					value={Useful.separateHexSpace(this.props.inputNumberStr)}
 					onChange={(e) => {
 						let value = e.target.value.toUpperCase().replace(/[^0-9A-F]/g, "");
 						this.props.onChange(value);
@@ -112,9 +159,21 @@ class HexToDeciminal extends React.Component<IHexToDeciminalPoprs, IHexToDecimin
 				</input>
 				<button
 					className="add-button"
+					onClick={() => this.pushAddButton()}
 				>+</button>
 
-				<div className="number-output">{num}</div>
+
+				<div className="number-output">
+					<div className="output-in">{Useful.separateHexSpace(this.props.inputNumberStr)}</div>
+					<div className="output-out">
+						{this.getDeciminalFromStr(this.props.inputNumberStr)}
+					</div>
+					<button 
+						className="delete-button"
+						onClick={e=>this.pushDeleteButton(e)}
+					>-</button>
+				</div>
+				{this.renderHistory()}
 			</div>
 		);
 	}
