@@ -25,7 +25,7 @@ interface IHexToDeciminalPoprs
 
 
 // 16進数変換
-class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminalState>
+abstract class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminalState>
 {
 	protected outputInClass: string = "output-in";
 	protected outputOutClass: string = "output-out";
@@ -42,7 +42,7 @@ class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminal
 	private pushAddButton()
 	{
 		let temp: History[] = this.state.history;
-		temp.unshift(new History(Useful.separateHexSpace(this.props.inputNumberStr), `${this.getConvertedValue(this.props.inputNumberStr)}`));
+		temp.unshift(new History(Useful.separateChar(this.props.inputNumberStr), `${this.getConvertedValue(this.props.inputNumberStr)}`));
 		this.setState({
 			history: temp,
 		});
@@ -56,10 +56,7 @@ class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminal
 		this.setState({history: temp});
 	}
 
-	protected getConvertedValue(str: string): number
-	{
-		return str!=="" ? parseInt(str, 16) : 0;
-	}
+	protected abstract getConvertedValue(str: string): string;
 
 	private renderHistory()
 	{
@@ -88,7 +85,7 @@ class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminal
 			<div>
 				<input 
 					className="number-input"
-					value={Useful.separateHexSpace(this.props.inputNumberStr)}
+					value={Useful.separateChar(this.props.inputNumberStr)}
 					onChange={(e) => {
 						let value = e.target.value.toUpperCase().replace(/[^0-9A-F]/g, "");
 						this.props.onChange(value);
@@ -101,8 +98,8 @@ class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminal
 
 
 				<div className="number-output">
-					<div className="output-in">{Useful.separateHexSpace(this.props.inputNumberStr)}</div>
-					<div className="output-out">
+					<div className={this.outputInClass}>{Useful.separateChar(this.props.inputNumberStr)}</div>
+					<div className={this.outputOutClass}>
 						{this.getConvertedValue(this.props.inputNumberStr)}
 					</div>
 					<button 
@@ -118,9 +115,47 @@ class HexConverter extends React.Component<IHexToDeciminalPoprs, IHexToDeciminal
 
 export class HexToDeciminal extends HexConverter
 {
-	protected override getConvertedValue(str: string): number
+	protected override getConvertedValue(str: string): string
 	{
-		return str!=="" ? parseInt(str, 16) : 0;
+		return str!=="" ? Useful.separateChar(`${parseInt(str, 16)}`, 3, ",") : "";
+	}
+}
+
+export class HexToBin extends HexConverter
+{
+
+    constructor(props)
+    {
+        super(props);
+        this.outputInClass += " width-small"
+        this.outputOutClass += " width-large"
+    }
+
+    protected override getConvertedValue(str: string): string
+	{
+        let num: number = parseInt(str, 16);
+        let ret = str!=="" ? Useful.separateChar(num.toString(2), 4) : "";
+        let end=str.length*4-ret.length;
+        for (let i=0; i<end; i++)
+            ret = "0" + ret;
+
+		return ret;
+	}
+}
+
+
+export class HexComplement extends HexConverter
+{
+
+	protected override getConvertedValue(str: string): string
+	{
+        let ret: string = "";
+
+        for (let i=0; i<str.length; i++)
+        {
+            ret = ret + (15-parseInt(str[i], 16)).toString(16).toUpperCase();
+        }
+		return Useful.separateChar(ret);
 	}
 }
 

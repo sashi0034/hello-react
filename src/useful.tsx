@@ -1,15 +1,15 @@
 
 export namespace Useful
 {
-    export function separateHexSpace(str: string): string
+    export function separateChar(str: string, space: number=2, char: string=" "): string
     {
         let ret = "";
         for (let i=0; i<str.length; i++)
         {
             ret = ret + str[i];
-            if ((i+1)%2 == 0 && i<str.length-1)
+            if ((i+1)%space == 0 && i<str.length-1)
             {
-                ret = ret + " "
+                ret = ret + char;
             }
         }
         return ret;

@@ -5,7 +5,7 @@ import {Useful} from "./useful"
 
 import './App.css';
 import { Interface } from "readline";
-import {HexToDeciminal} from "./hexConverter"
+import {HexToDeciminal, HexToBin, HexComplement} from "./hexConverter"
 
 
 
@@ -53,7 +53,8 @@ export class App extends React.Component<IAppProps, IAppState>
 	}
 
     render() {
-		
+		let menu=SideBar
+
         return (
 			<div className="base-document">
 				<SideBar menu={this.state.menu} setMenu={(value) => this.setMenu(value)}/>
@@ -62,13 +63,26 @@ export class App extends React.Component<IAppProps, IAppState>
 					<div className="button-area">
 						<SquareButtonField  inputNumberStr={this.state.inputNumberStr} onClick={(value) => this.setInputNumberStr(value)}/>
 					</div>
-					<HexToDeciminal inputNumberStr={this.state.inputNumberStr} onChange={(value) => this.setInputNumberStr(value)}/>
+					{this.resultRender()}
 				</div>
 				
 			</div>
 			
 		);
     }
+
+	resultRender()
+	{
+		switch (this.state.menu)
+		{
+			case EMenu.TO_DEC:
+				return(<HexToDeciminal inputNumberStr={this.state.inputNumberStr} onChange={(value) => this.setInputNumberStr(value)}/>);
+			case EMenu.TO_BIN:
+				return(<HexToBin inputNumberStr={this.state.inputNumberStr} onChange={(value) => this.setInputNumberStr(value)}/>);
+			case EMenu.COMP:
+				return(<HexComplement inputNumberStr={this.state.inputNumberStr} onChange={(value) => this.setInputNumberStr(value)}/>);
+		}
+	}
 }
 
 
